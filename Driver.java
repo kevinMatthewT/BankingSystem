@@ -38,16 +38,18 @@ public class Driver {
 					System.out.println("Sorry, the account already exists");
 				}
 			}else if(Option==2) {
-				System.out.println("what is your account name?");
-				String name=read.next();
-				EnteredData.setName(name);
-				
+				if (Data.AccName==null) {
+					System.out.println("sorry, there is no account available. please make a new account");
+				}else {
+					System.out.println("what is your account name?");
+					String name=read.next();
+					EnteredData.setName(name);
 				//some error in the code but i tried hard but was unable to think as for why the customer and account name doesnt work
 				boolean Shouldrun=true;
 				
 				/*while (Shouldrun) {
 					if (EnteredData.getName()==Data.getName()) {
-						Shouldrun=false;
+						break;
 					}else {
 						System.out.println("please try again");
 					}
@@ -65,22 +67,30 @@ public class Driver {
 					}
 				
 				}
-				
-			}else if(Option==3 &&Data.LoggedIn==true){
-				boolean Shouldrun=true;
-				while(Shouldrun) {
-					System.out.println("Enter amount you want to Deposit");
-					int Deposit=read.nextInt();
-					if(Deposit>0) {
-					    actions.toDeposit(Deposit);
-					    Shouldrun=false;
-					}else {
-						System.out.println("You must deposit at a minimum of $1");
-					}
-					
 				}
 				
-			}else if(Option==4 &&Data.LoggedIn==true){
+			}else if(Option==3){
+				if(Data.LoggedIn==false) {
+					System.out.println("Sorry, you are not logged in, please try again");
+					}else {
+					boolean Shouldrun=true;
+					while(Shouldrun) {
+						System.out.println("Enter amount you want to Deposit");
+						int Deposit=read.nextInt();
+						if(Deposit>0) {
+						    actions.toDeposit(Deposit);
+						    Shouldrun=false;
+						}else {
+							System.out.println("You must deposit at a minimum of $1");
+						}
+						
+					}
+				}
+				
+			}else if(Option==4){
+				if(Data.LoggedIn==false) {
+					System.out.println("Sorry, you are not logged in, please try again");
+					}else {
 				boolean Shouldrun=true;
 				while(Shouldrun) {
 					System.out.println("Enter amount you want to withdraw");
@@ -91,15 +101,22 @@ public class Driver {
 					}else {
 						System.out.println("You must withdraw at a minimum of $1");
 					}
+				}
 					
 				}
 				
-			}else if(Option==5 &&Data.LoggedIn==true){
+			}else if(Option==5){
+				if(Data.LoggedIn==false) {
+					System.out.println("Sorry, you are not logged in, please try again");
+					}else {
 				System.out.println(Data.toString());
+					}
 				
 			}else if(Option==6){
 				Data.Running=false;
 				
+			}else {
+				System.out.println("That option does not exist, please try again");
 			}
 			
 			
